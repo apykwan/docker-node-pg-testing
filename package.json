@@ -1,0 +1,35 @@
+{
+  "name": "vanilla_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon src/app/server.ts",
+    "start:dev": "ts-node src/app/server.ts",
+    "test": "jest src/test/server.test.ts --forceExit",
+    "itest": "jest src/test/integration.test.ts --forceExit",
+    "build": "del /Q dist && tsc",
+    "seed": "ts-node src/app/seed.ts",
+    "start": "npm run build && node dist/app/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.16",
+    "@types/uuid": "^9.0.7",
+    "jest": "^29.7.0",
+    "node-mocks-http": "^1.14.1",
+    "nodemon": "^3.0.3",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/pg": "^8.11.0",
+    "dotenv": "^16.4.1",
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
+  }
+}
