@@ -44,7 +44,7 @@ jobs:
       - name: run unit test
         run: npm test
 
-      - name: Fill Database
+      - name: run the init.sql script
         run: |
           PGPASSWORD=postgres psql -U postgres -h 127.0.0.1 -p 5432 -d products -a -f init.sql
 

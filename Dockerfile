@@ -1,9 +1,9 @@
-FROM node:alpine3.18
+FROM node:19-bullseye
 WORKDIR /
 COPY package*.json ./
 RUN npm ci
 COPY . .
 EXPOSE 5000
 VOLUME [ "/app/node_modules" ]
-ENV NODE_OPTIONS=--max_old_space_size=2048
+RUN export NODE_OPTIONS=--max-old-space-size=8192
 CMD ["npm", "run", "dev"]

@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     volumes: 
       - ./init.sql:/docker-entrypoint-initdb.d/0_init.sql
-      - ./pgdb_volume:/var/lib/mysql
+      - ./pgdb_volume:/var/lib/volumes/postgres
     ports:
       - 5432:5432
     environment:
@@ -19,7 +19,6 @@ services:
     container_name: node-container
     build: .
     image: pg_node:v1
-    memory: 4096m
     ports:
       - 5000:5000
     expose:
@@ -31,5 +30,6 @@ services:
       PG_PASS: postgres
       PG_DB: products
       PG_PORT: 5432
+      NODE_OPTIONS: --max_old_space_size=8192
     depends_on:
       - pgdb
