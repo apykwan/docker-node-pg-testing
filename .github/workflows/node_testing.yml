@@ -5,6 +5,13 @@ on:
   pull_request:
     branches: ["main"]
 
+env:
+  PG_HOST: localhost
+  PG_USER: postgres
+  PG_PASS: postgres
+  PG_DB: products
+  PG_PORT: 5432
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,13 +46,7 @@ jobs:
 
       - name: Fill Database
         run: |
-          psql -U postgres -d products -a -f init.sql
+          PGPASSWORD=postgres psql -U postgres -h 127.0.0.1 -p 5432 -d products -a -f init.sql
 
       - name: start node server and run integration test
         run: npm run start:dev & npm run itest
-        env:
-          PG_HOST: localhost
-          PG_USER: postgres
-          PG_PASS: postgres
-          PG_DB: products
-          PG_PORT: 5432

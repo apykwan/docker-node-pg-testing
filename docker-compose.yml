@@ -19,6 +19,7 @@ services:
     container_name: node-container
     build: .
     image: pg_node:v1
+    memory: 4096m
     ports:
       - 5000:5000
     expose:
